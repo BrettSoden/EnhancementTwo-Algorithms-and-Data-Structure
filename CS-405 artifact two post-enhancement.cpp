@@ -1,11 +1,10 @@
-// Uncomment the next line to use precompiled headers
+
 #include "pch.h"
-// uncomment the next line if you do not use precompiled headers
+
 #include "gtest/gtest.h"
 
 //
 // the global test environment setup and tear down
-// you should not need to change anything here
 class Environment : public ::testing::Environment
 {
 public:
@@ -22,12 +21,11 @@ public:
     void TearDown() override {}
 };
 
-// create our test class to house shared data between tests
-// you should not need to change anything here
+// create test class to house shared data between tests
 class CollectionTest : public ::testing::Test
 {
 protected:
-    // create a smart point to hold our collection
+    // create a smart point to hold the collection
     std::unique_ptr<std::vector<int>> collection;
 
     void SetUp() override
@@ -51,14 +49,12 @@ protected:
     }
 };
 
-// When should you use the EXPECT_xxx or ASSERT_xxx macros?
 // Use ASSERT when failure should terminate processing, such as the reason for the test case.
 // Use EXPECT when failure should notify, but processing should continue
 
-// Test that a collection is empty when created.
-// Prior to calling this (and all other TEST_F defined methods),
-//  CollectionTest::StartUp is called.
-// Following this method (and all other TEST_F defined methods),
+
+
+//  CollectionTest::StartUp is called
 //  CollectionTest::TearDown is called
 TEST_F(CollectionTest, CollectionSmartPointerIsNotNull)
 {
@@ -86,25 +82,23 @@ TEST_F(CollectionTest, AlwaysFail)
     FAIL();
 }
 
-// TODO: Create a test to verify adding a single value to an empty collection
 TEST_F(CollectionTest, CanAddToEmptyVector)
 {
-    // is the collection empty?
+    
     // if empty, the size must be 0
 
     add_entries(1);
 
-    // is the collection still empty?
     // if not empty, what must the size be?
 }
 
-// TODO: Create a test to verify adding five values to collection
+
 TEST_F(CollectionTest, CanAddFiveValuesToVector)
 {
     add_entries(5);
 }
 
-// TODO: Create a test to verify that max size is greater than or equal to size for 0, 1, 5, 10 entries
+
 TEST_F(CollectionTest, MaxSizeIsGreater)
 {
     //the maz size is greater than the below entries
@@ -117,7 +111,6 @@ TEST_F(CollectionTest, MaxSizeIsGreater)
     EXPECT_TRUE(collection->max_size() > 10);
 }
 
-// TODO: Create a test to verify that capacity is greater than or equal to size for 0, 1, 5, 10 entries
 
 TEST_F(CollectionTest, GreaterThanOrEqualToo)
 {
@@ -125,8 +118,6 @@ TEST_F(CollectionTest, GreaterThanOrEqualToo)
     EXPECT_TRUE(collection->size() >= 0, 1, 5, 10);
 }
 
-
-// TODO: Create a test to verify resizing increases the collection
 
 TEST_F(CollectionTest, VerifyIncreaseSize)
 {
@@ -136,7 +127,6 @@ TEST_F(CollectionTest, VerifyIncreaseSize)
     ASSERT_TRUE(collection->size() > 100);
 }
 
-// TODO: Create a test to verify resizing decreases the collection
 
 TEST_F(CollectionTest, VerifyDecreaseSize)
 {
@@ -147,7 +137,6 @@ TEST_F(CollectionTest, VerifyDecreaseSize)
 
 }
 
-// TODO: Create a test to verify resizing decreases the collection to zero
 
 TEST_F(CollectionTest, VerifyDecreaseSizeZero)
 {
@@ -157,7 +146,7 @@ TEST_F(CollectionTest, VerifyDecreaseSizeZero)
     ASSERT_EQ(collection->size(), 0);
 }
 
-// TODO: Create a test to verify clear erases the collection
+
 
 TEST_F(CollectionTest, ClearEraseCollection)
 {
@@ -167,14 +156,12 @@ TEST_F(CollectionTest, ClearEraseCollection)
 
 }
 
-// TODO: Create a test to verify erase(begin,end) erases the collection
 
 TEST_F(CollectionTest, EraseBeginEnd)
 {
     erase(begin, end);
 }
 
-// TODO: Create a test to verify reserve increases the capacity but not the size of the collection
 
 TEST_F(CollectionTest, ReserveIncreaseCapacity)
 {
@@ -185,7 +172,6 @@ TEST_F(CollectionTest, ReserveIncreaseCapacity)
 
 }
 
-// TODO: Create a test to verify the std::out_of_range exception is thrown when calling at() with an index out of bounds
 // NOTE: This is a negative test
 
 TEST_F(CollectionTest, OutOfRangeException)
@@ -194,8 +180,6 @@ TEST_F(CollectionTest, OutOfRangeException)
     ASSERT_FALSE(collection->at(101)) << "Collection is out of range.";
 }
 
-
-// TODO: Create 2 unit tests of your own to test something on the collection - do 1 positive & 1 negative
 
 //Assert that size does not go above 100 entries.
 TEST_F(CollectionTest, GreaterThanOrEqualToo100)
